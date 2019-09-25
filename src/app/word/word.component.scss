@@ -2,11 +2,8 @@
   display: block;
 }
 
-.str {
-  color: #096cef;
-}
-
 .word {
+  font-family: none;
   font-size: 1.8em;
   color: #053a80;
 }
@@ -17,11 +14,31 @@
   color: #bd104d;
 }
 
-.mor {
-  color: #b16f6a;
-}
-
 .str, .mor {
   font-size: .9em;
 }
 
+.parent-words:hover {
+
+  -webkit-box-shadow: 0px 0px 8px -3px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 8px -3px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 8px -3px rgba(0, 0, 0, 0.75);
+
+  .str {
+    color: #5999ef;
+  }
+  
+  .mor {
+    color: #973bb3;
+  }  
+}
+
+.parent-words {
+  display: inline-block;
+  cursor: pointer;
+  padding: 0 5px;
+
+  .str, .mor {
+    color: #b9b9b9;
+  }
+}

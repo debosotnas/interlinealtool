@@ -10,11 +10,20 @@ export class VerseComponent implements OnInit {
 
   @Input() verse: Verse;
   words: Word[];
+  wordDetails: Word = null;
 
   constructor() { }
 
   ngOnInit() {
     this.words = this.verse.words;
+  }
+
+  showWordDetails(word: Word): void {
+    if (word === this.wordDetails) {
+      this.wordDetails = null;
+    } else {
+      this.wordDetails = word;
+    }
   }
 
 }

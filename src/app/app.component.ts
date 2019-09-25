@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Verse, Portion } from './common/verse';
-import { ConfigService } from './services/config.service';
+import { TextPortionSelected } from './common/verse';
 
 @Component({
   selector: 'app-root',
@@ -10,21 +8,15 @@ import { ConfigService } from './services/config.service';
 })
 export class AppComponent implements OnInit {
 
-  passage: string;
-  verses: Verse[];
+  textPortions: TextPortionSelected[];
 
-  constructor(private configService: ConfigService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.loadPortion();
+    this.textPortions = new Array<TextPortionSelected>();
   }
 
-  loadPortion() {
-    this.configService.getVerses()
-      .subscribe((data: Portion) => {
-        this.passage = data.passage;
-        this.verses = data.verses;
-      });
+  onSelectedPassage(evt: TextPortionSelected): void {
+    this.textPortions.push(evt);
   }
-
 }

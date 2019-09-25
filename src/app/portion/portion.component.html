@@ -1,3 +1,9 @@
-<h4>{{passage}}</h4>
-<br />
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-6 text-left"><div class="title-portion">{{passage}}</div></div>
+    <div class="col-6 text-right">
+      <app-portion-selector (passageSelected)="onSelectedPassage($event)" *ngIf="passageSelection" [txtLabel]="'Cambiar pasaje:'" [passageSelection]="passageSelection"></app-portion-selector>
+    </div>
+  </div>
+</div>
 <app-verse *ngFor="let verse of verses" [verse]="verse"></app-verse>

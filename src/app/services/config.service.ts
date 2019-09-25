@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Portion } from '../common/verse';
+import { Portion, TextPortionSelected } from '../common/verse';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class ConfigService {
 
   constructor(private http: HttpClient) { }
 
-  getVerses() {
+  getVerses(textPortion: TextPortionSelected) {
     return this.http.get<Portion>(this.versesURL);
   }
 }

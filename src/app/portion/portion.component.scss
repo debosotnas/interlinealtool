@@ -1,4 +1,15 @@
+.title-portion {
+  font-size: 1.6em;
+  font-weight: 300;
+  margin: 8px;
+}
+
 app-verse {
+  display: block;
+  margin-bottom: 10px;
+}
+
+app-portion-selector {
+  margin-top: 15px;
   display: inline-block;
-  margin: 5px;
 }

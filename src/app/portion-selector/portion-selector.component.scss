@@ -1,0 +1,55 @@
+// -- select and button to open modal selector
+.selection-description {
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.search-controls-block {
+
+  margin: 3px 6px;
+
+  .btn-chap-verse {
+    font-size: 12px;
+    height: 23px;
+    vertical-align: middle;
+    line-height: 10px;
+    width: 160px;
+    text-align: left;
+    margin-left: 5px;
+  }
+
+  .book-selected {
+    vertical-align: middle;
+    font-size: 14px;
+    width: 140px;
+    height: 23px;
+  }
+
+}
+
+// -- select verses modal
+.list-of-chapters {
+
+  .chapters {
+
+    .chapter {
+      margin: 2px 4px;
+      font-size: 12px;
+    }
+
+  }
+
+  .verses {
+
+    .extra-info {
+      color: #888;
+      font-size: 15px;
+    }
+
+    .verse {
+      margin: 2px 4px;
+      font-size: 12px;
+    }
+  }
+}

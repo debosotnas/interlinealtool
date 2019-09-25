@@ -1,1 +1,2 @@
-<app-portion [passage]="passage" [verses]="verses"></app-portion>
+<app-portion *ngFor="let textPortion of textPortions" [textPortion]="textPortion"></app-portion>
+<app-portion-selector (passageSelected)="onSelectedPassage($event)" [txtLabel]="'Agregar nuevo pasaje:'"></app-portion-selector>

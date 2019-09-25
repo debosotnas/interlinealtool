@@ -1,2 +1,26 @@
-<div class="full-verse">{{verse.full}}</div>
-<span class="num-verse">{{verse.verse}}</span> <app-word *ngFor="let word of words" [word]="word"></app-word>
+<div class="container-fluid">
+  <div class="row verse-bg">
+    <div *ngIf="wordDetails" class="col-2 detail-bg">
+        <div class="word-detail">
+            <span class="greek-detail">Griego:</span><span class="greek-word">{{wordDetails.word}}</span>
+        </div>
+        <div class="word-detail">
+            <span class="literal-detail">Literal:</span><span class="literal-word">{{wordDetails.esp}}</span>
+        </div>
+        <div class="word-detail">
+            <span class="mor-detail">Morfología:</span><span class="mor-word">{{wordDetails.mor}}</span>
+        </div>
+        <div class="word-detail">
+            <span class="str-detail">Strong:</span><span class="str-word">{{wordDetails.str}}</span>
+        </div>
+    </div>
+
+    <div class="col greek-bg">
+      <span class="num-verse">{{verse.verse}}</span> <app-word *ngFor="let word of words" [word]="word" (click)="showWordDetails(word)"></app-word>
+    </div>
+
+    <div class="col-4 trad-bg">
+      <div class="full-verse"><span class="num-verse">{{verse.verse}}</span>{{verse.full}}</div>
+    </div>
+  </div>
+</div>

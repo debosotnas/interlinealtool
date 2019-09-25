@@ -10,7 +10,7 @@ require_once 'meekrodb.2.3.class.php';
 // localhost
 DB::$user = 'root';
 DB::$password = 'root';
-DB::$dbName = 'bibles';
+DB::$dbName = 'nt_db';
 
 /*
 // server
