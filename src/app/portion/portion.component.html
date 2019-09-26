@@ -1,8 +1,10 @@
+<div *ngIf="isLoadingView" class="loading-wrapper"></div>
 <div class="container-fluid">
-  <div class="row">
+  <div class="row passage-title">
     <div class="col-6 text-left"><div class="title-portion">{{passage}}</div></div>
     <div class="col-6 text-right">
-      <app-portion-selector (passageSelected)="onSelectedPassage($event)" *ngIf="passageSelection" [txtLabel]="'Cambiar pasaje:'" [passageSelection]="passageSelection"></app-portion-selector>
+      <app-portion-selector (passageSelected)="onSelectedPassage($event)" *ngIf="passageSelection" [txtLabel]="'Cambiar:'" [passageSelection]="passageSelection"></app-portion-selector>
+      <button class="btn btn-outline-danger empty-btn" (click)="emptyPortion(passage)">🗑 Quitar pasaje</button>
     </div>
   </div>
 </div>

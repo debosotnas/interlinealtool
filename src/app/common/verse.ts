@@ -16,6 +16,8 @@ export interface Word {
   esp: string;
   fon: string;
   mor: string;
+  mordesc: string;
+  highlight?: boolean;
 }
 
 export interface PassageSelection {

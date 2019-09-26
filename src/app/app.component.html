@@ -1,2 +1,63 @@
-<app-portion *ngFor="let textPortion of textPortions" [textPortion]="textPortion"></app-portion>
-<app-portion-selector (passageSelected)="onSelectedPassage($event)" [txtLabel]="'Agregar nuevo pasaje:'"></app-portion-selector>
+<div *ngIf="isLoadingView" class="loading-wrapper"></div>
+<div class="portion-selector-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-6">
+        <app-portion-selector [isMainSelector]="true" (passageSelected)="onSelectedPassage($event)" [txtLabel]="'Agregar nuevo pasaje:'"></app-portion-selector>
+      </div>
+      <div class="col-6 text-right">
+        <button class="btn btn-info help-btn" (click)="open(helpContent)">Ayuda</button>
+        <button [disabled]="!this.textPortions.length" class="btn btn-danger empty-btn" (click)="emptyPortions()">🗑 Quitar todos los pasajes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-portion *ngFor="let textPortion of textPortions" [textPortion]="textPortion" (portionLoaded)="onPortionLoaded()" (portionDeleted)="onPortionDeleted($event)"></app-portion>
+
+<ng-template #helpContent let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Ayuda general</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div>
+        <ul>
+          <li>Agregar nuevo pasaje:
+            <ul>
+              <li><b>Seleccione el libro</b> del pasaje y haga click en el botón junto al nombre del libro.</li>
+              <li>En la ventana que se presenta, seleccione primero el capítulo y luego los versículos que desea mostrar.</li>
+              <li>Presione el botón "Cargar pasaje".</li>
+            </ul>
+          </li>
+
+          <li>Quitar pasajes:
+            <ul>
+              <li>Para quitar todos los pasajes cargados, haga click en el botón "Quitar todos los pasajes" que se encuentra sobre la barra superior de la aplicación</li>
+              <li>Para quitar una única porción/pasaje, haga click en el botón "Quitar pasaje" el pasaje que desea eliminar.</li>
+            </ul>
+          </li>
+  
+          <li>Ver detalle de palabras/léxico:
+            <ul>
+              <li>Teniendo un pasaje ya cargado, puede pasar con el mouse sobre las palabras del interlineal y hacer click sobre la que desee obtener más información.</li>
+              <li>Se abrirá a la izquierda de la pantalla un recuadro con "más información" sobre la palabra seleccionada.</li>
+              <li>Para cerrar el cuadro de "más información" puede cliquear en el botón "X" que aparece en la esquina superior derecha del mismo cuadro "más información".</li>
+            </ul>
+          </li>
+
+          <li>Notas sobre versiones:
+            <ul>
+              <li>Texto griego: Open Greek New Testament Project; NA28 / NA27 Equivalent (<a href="https://OpenGNT.com" target="_blank">OpenGNT</a>)</li>
+              <li>Texto Paralelo: LBLA 1997</li>
+              <li>Léxicos referidos: LogosKLogos, Biblia Paralela, Blue Letter Bible, Study Light</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Cerrar</button>
+    </div>
+</ng-template>

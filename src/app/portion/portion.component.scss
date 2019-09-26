@@ -6,10 +6,36 @@
 
 app-verse {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 1px;
 }
 
 app-portion-selector {
   margin-top: 15px;
   display: inline-block;
+}
+
+.passage-title {
+  background-color: #38ff0933;
+}
+
+.loading-wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-image: url(../../assets/loader.gif);
+  background-color: #000;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 70px 70px;
+  opacity: .8;
+}
+
+.empty-btn {
+  font-size: 12px;
+  height: 23px;
+  vertical-align: middle;
+  line-height: 10px;
 }

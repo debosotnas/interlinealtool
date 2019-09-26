@@ -39,4 +39,72 @@ app-word {
   }
 }
 
+.detail-bg {
 
+  position: relative;
+
+  .close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+    height: 19px;
+    width: 19px;
+    line-height: 6px;
+    padding: 0;
+  }
+
+  .word-detail {
+
+    margin: 5px 0;
+
+    .greek-detail, .literal-detail, .mor-detail, .str-detail {
+      font-weight: bold;
+      font-size: 1em;
+    }
+
+    .greek-word, .literal-word, .mor-word, .str-word {
+      font-size: 1.1em;
+      font-weight: 200;
+      color: #5f49cc;
+    }
+
+    .greek-word {
+      font-family: none;
+    }
+   
+    .mor-description {
+      display: inline-block;
+      padding-left: 13px;
+      font-size: .9em;
+      font-weight: 300;
+    }
+    .greek-word {
+      font-size: 1.6em;
+    }
+
+    .str-word {
+      display: inline-block;
+      margin-left: 4px;
+    }
+
+    .sub-title-details {
+      font-size: 1em;
+      font-weight: 300;
+      color: #5f49cc;
+      // padding-left: 13px;
+    }
+
+    .list-of-lexicons {
+      // list-style-position: inside;
+      padding-left: 30px;
+    }
+  }
+  
+}
+
+.highlight-word {
+  -webkit-box-shadow: 0px 0px 8px -3px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 8px -3px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 8px -3px rgba(0, 0, 0, 0.75);
+}

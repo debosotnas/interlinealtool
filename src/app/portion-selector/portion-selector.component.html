@@ -1,4 +1,5 @@
 <div class="search-controls-block">
+  <span *ngIf="isMainSelector" class="plus-sign">⊕</span>
   <span class="selection-description">{{txtLabel}}</span>
   <select class="book-selected" [(ngModel)]="bookselected" (ngModelChange)="onChangeBook()">
     <option *ngFor="let item of listBooks" [selected]="bookselected == item.val" [value]="item.val">{{item.name}}</option>

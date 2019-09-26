@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Verse, Portion, PassageSelection, TextPortionSelected } from '../common/verse';
 import { ConfigService } from '../services/config.service';
@@ -10,11 +10,16 @@ import { ConfigService } from '../services/config.service';
 })
 export class PortionComponent implements OnInit {
 
+  @Output() portionLoaded = new EventEmitter<any>();
+  @Output() portionDeleted = new EventEmitter<TextPortionSelected>();
+
   @Input() textPortion: TextPortionSelected;
 
   passage: string;
   verses: Verse[];
   passageSelection: PassageSelection;
+
+  isLoadingView = false;
 
    constructor(private configService: ConfigService) { }
 
@@ -25,16 +30,28 @@ export class PortionComponent implements OnInit {
   }
 
   loadPortion(textPortion: TextPortionSelected) {
-    this.configService.getVerses(this.textPortion)
+    this.isLoadingView = true;
+
+    this.configService.getVerses(textPortion)
       .subscribe((data: Portion) => {
         this.passage = data.passage;
         this.verses = data.verses;
         this.passageSelection = data.passageSelection;
+
+        this.portionLoaded.emit();
+        this.isLoadingView = false;
       });
   }
 
   onSelectedPassage(evt: TextPortionSelected): void {
-    this.loadPortion(this.textPortion);
+    this.loadPortion(evt);
+  }
+
+  emptyPortion(passage: string): void {
+    if (confirm(`Quitar "${passage}"?`)) {
+      this.portionDeleted.emit(this.textPortion);
+      // console.log('borrar!');
+    }
   }
 
 }

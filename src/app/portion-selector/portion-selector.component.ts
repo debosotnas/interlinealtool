@@ -18,6 +18,7 @@ export class PortionSelectorComponent implements OnInit {
 
   @Input() passageSelection: PassageSelection;
   @Input() txtLabel: string;
+  @Input() isMainSelector = false;
 
   listBooks = BooksWithChapters;
   listVersesByChapter = versesByChaptersBook;
@@ -60,10 +61,15 @@ export class PortionSelectorComponent implements OnInit {
         this.passageSelection.verseEnd);
 
       this.updateAndLoadPortion(false);
+    } else {
+      this.resetSelector();
     }
-
-    // this.passageSelected = new EventEmitter<TextPortionSelected>();
   }
+
+  resetSelector() {
+    this.bookselected = DEFAULT_BOOK_TO_LOAD;
+    this.onChangeBook();
+}
 
   updateCurrentPortionToBeLoaded(): void {
     const currentObj =  this.objectKeys(this.currentVerseHighlight);
@@ -172,6 +178,9 @@ export class PortionSelectorComponent implements OnInit {
       book: this.bookselected,
       textPortion: this.titlePortion
     });
+    if (this.isMainSelector) {
+      this.resetSelector();
+    }
   }
 
 }
