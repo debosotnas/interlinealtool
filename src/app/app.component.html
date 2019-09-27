@@ -1,18 +1,21 @@
 <div *ngIf="isLoadingView" class="loading-wrapper"></div>
-<div class="portion-selector-wrapper">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-6">
-        <app-portion-selector [isMainSelector]="true" (passageSelected)="onSelectedPassage($event)" [txtLabel]="'Agregar nuevo pasaje:'"></app-portion-selector>
-      </div>
-      <div class="col-6 text-right">
-        <button class="btn btn-info help-btn" (click)="open(helpContent)">Ayuda</button>
-        <button [disabled]="!this.textPortions.length" class="btn btn-danger empty-btn" (click)="emptyPortions()">🗑 Quitar todos los pasajes</button>
+<div *ngIf="config$ | async as config">
+  <div class="portion-selector-wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6">
+          <app-portion-selector [isMainSelector]="true" (passageSelected)="onSelectedPassage($event)" [txtLabel]="'Agregar nuevo pasaje:'"></app-portion-selector>
+        </div>
+        <div class="col-6 text-right">
+          <button [ngClass]="{'btn-outline-dark': !config.showAdvancedMode, 'btn-outline-primary': config.showAdvancedMode}" class="btn advancedOnOff" (click)="enableDisableAdvancedMode(config.showAdvancedMode)">Modo Avanzado On/Off</button>
+          <button class="btn btn-info help-btn" (click)="open(helpContent)">Ayuda</button>
+          <button [disabled]="!this.textPortions.length" class="btn btn-danger empty-btn" (click)="emptyPortions()">🗑 Quitar todos los pasajes</button>
+        </div>
       </div>
     </div>
   </div>
+  <app-portion *ngFor="let textPortion of textPortions" [textPortion]="textPortion" (portionLoaded)="onPortionLoaded()" (portionDeleted)="onPortionDeleted($event)"></app-portion>
 </div>
-<app-portion *ngFor="let textPortion of textPortions" [textPortion]="textPortion" (portionLoaded)="onPortionLoaded()" (portionDeleted)="onPortionDeleted($event)"></app-portion>
 
 <ng-template #helpContent let-modal>
     <div class="modal-header">

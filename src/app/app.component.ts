@@ -2,6 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { TextPortionSelected } from './common/verse';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+// --
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import { Config } from './store/models/config.model';
+import * as ConfigActions from './store/actions/config.actions';
+
+interface AppState {
+  config: Config;
+}
+// --
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,10 +21,26 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class AppComponent implements OnInit {
 
+  config$: Observable<Config>;
+
   textPortions: TextPortionSelected[];
   isLoadingView = true;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, private store: Store<AppState>) {
+    this.config$ = store.select('config');
+  }
+
+  setAdvancedModeEditor(): void {
+    this.store.dispatch(new ConfigActions.AdvancedMode());
+  }
+
+  setBasicModeEditor(): void {
+    this.store.dispatch(new ConfigActions.BasicMode());
+  }
+
+  enableDisableAdvancedMode( enableAdvanced: boolean) {
+    enableAdvanced ? this.setAdvancedModeEditor() : this.setBasicModeEditor();
+  }
 
   ngOnInit(): void {
     this.textPortions = new Array<TextPortionSelected>();
