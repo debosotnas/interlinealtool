@@ -1,0 +1,41 @@
+<div *ngIf="contentAsModal" class="modal-header">
+  <h4 class="modal-title" class="greek-font">{{wordDetails.word}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="container-fluid">
+  <div *ngIf="wordDetails" class="row">
+    <div *ngIf="!contentAsModal" class="col-12 word-detail">
+        <span class="greek-word greek-font">{{wordDetails.word}}</span>
+    </div>
+    <div class="col-md-12 col-6 word-detail">
+        <span class="fonetica-detail">Pronunciación: <button class="btn-speaker" (click)="playGreekWord()">🔊</button></span>
+        <br>
+        <span class="fonetica-word">{{wordDetails.fon}}</span>
+        <span class="fonetica-word-desc">(alternativa)</span>
+    </div>
+    <div class="col-md-12 col-6 word-detail">
+      <span class="literal-detail">Literal:</span>
+      <br>
+      <span class="literal-word">{{wordDetails.esp}}</span>
+    </div>
+    <div class="col-md-12 col-6 word-detail">
+          <span class="mor-detail">Morfología:</span>
+        <br>
+        <span class="mor-word">{{wordDetails.mor}}</span>
+        <br>
+        <span class="mor-description">{{wordDetails.mordesc}}</span>
+    </div>
+    <div class="col-md-12 col-6 word-detail">
+        <span class="str-detail">Strong:</span>
+        <div class="sub-title-details">Ver más info de {{wordDetails.str}}:</div>
+        <ul class="list-of-lexicons">
+          <li><a target="_blank" href="https://logosklogos.com/strongcodes/{{getStrongCode(wordDetails.str)}}">LogosKLogos</a></li>
+          <li><a target="_blank" href="https://bibliaparalela.com/greek/{{getStrongCode(wordDetails.str)}}.htm">Biblia Paralela</a></li>
+          <li><a target="_blank" href="https://www.blueletterbible.org/lang/lexicon/lexicon.cfm?t=kjv&strongs=g{{getStrongCode(wordDetails.str)}}">Blue Letter Bible</a></li>
+          <li><a target="_blank" href="https://www.studylight.org/lexicons/greek/{{getStrongCode(wordDetails.str)}}.html">Study Light</a></li>
+        </ul>
+    </div>
+  </div>
+</div>

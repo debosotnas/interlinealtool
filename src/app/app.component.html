@@ -1,28 +1,91 @@
-<div *ngIf="isLoadingView" class="loading-wrapper"></div>
-<div *ngIf="config$ | async as config">
-  <div class="portion-selector-wrapper">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12 col-md-6">
-          <app-portion-selector [isMainSelector]="true" (passageSelected)="onSelectedPassage($event)" [txtLabel]="'Agregar nuevo pasaje:'"></app-portion-selector>
-        </div>
-        <div class="col-12  col-md-6 text-right">
-          <button *ngIf="config.showAdvancedMode"
-            class="btn advancedOnOff btn-outline-secondary"
-            (click)="setBasicModeEditor()"
-            >Desactivar modo avanzado</button>
-          <button *ngIf="!config.showAdvancedMode"
-            class="btn advancedOnOff btn-dark"
-            (click)="setAdvancedModeEditor()"
-            >Activar modo avanzado</button>
-          <button class="btn btn-info help-btn" (click)="open(helpContent)">Ayuda</button>
-          <button [disabled]="!this.textPortions.length" class="btn btn-danger empty-btn" (click)="emptyPortions()">🗑 Quitar todos los pasajes</button>
-        </div>
-      </div>
+<!-- <div class="pos-f-t">
+  <div class="collapse">
+    <div class="bg-dark p-4">
+      <h5 class="text-white h4">Collapsed content</h5>
+      <span class="text-muted">Toggleable via the navbar brand.</span>
     </div>
   </div>
+  <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+</div> -->
+
+<!-- <div class="options-btn navbar-dark d-md-none">
+  <button (click)="showHideOptions()" class="navbar-toggler" type="button">
+    ☰
+  </button>
+</div> -->
+
+<div *ngIf="isLoadingView" class="loading-wrapper"></div>
+<div *ngIf="config$ | async as config">
+
+  <div class="options-btn navbar-dark d-md-none">
+      <button (click)="showHideOptions()" class="navbar-toggler" type="button">
+        ☰
+      </button>
+  </div>
+
+  <div class="portion-selector-wrapper d-none d-md-block">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 header-full-wrapper">
+            <app-portion-selector [isMainSelector]="true" (passageSelected)="onSelectedPassage($event)" [txtLabel]="'Agregar nuevo pasaje:'"></app-portion-selector>
+
+            <button *ngIf="config.showAdvancedMode"
+              class="btn advancedOnOff btn-outline-secondary"
+              (click)="setBasicModeEditor()"
+              >Desactivar modo avanzado</button>
+            <button *ngIf="!config.showAdvancedMode"
+              class="btn advancedOnOff btn-dark"
+              (click)="setAdvancedModeEditor()"
+              >Activar modo avanzado</button>
+            <button [disabled]="!this.textPortions.length" class="btn btn-danger empty-btn" (click)="emptyPortions()">🗑 Quitar todos los pasajes</button>
+            <button class="btn btn-info help-btn" (click)="open(helpContent)">Ayuda</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+  <div *ngIf="showHideOptionsMenu" class="portion-selector-wrapper d-md-none">
+    <div class="container-fluid">
+      <div class="row full-btn-container">
+        <div class="col-12">
+          <app-portion-selector [isMainSelector]="true" (passageSelected)="onSelectedPassage($event)" [txtLabel]="'Agregar pasaje:'"></app-portion-selector>
+          <button *ngIf="config.showAdvancedMode"
+            class="btn btn-outline-secondary full-btn"
+            (click)="setBasicModeEditor()"
+            >Desactivar modo avanzado</button>
+        </div>
+        <div class="col-12">
+          <button *ngIf="!config.showAdvancedMode"
+            class="btn btn-dark full-btn"
+            (click)="setAdvancedModeEditor()"
+            >Activar modo avanzado</button>
+        </div>
+        <div class="col-12">
+          <button [disabled]="!this.textPortions.length" class="full-btn btn btn-danger" (click)="emptyPortions()">🗑 Quitar todos los pasajes</button>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-info full-btn" (click)="open(helpContent)">Ayuda</button>
+          </div>
+        </div>
+    </div>
+  </div>
+
+
   <app-portion *ngFor="let textPortion of textPortions" [textPortion]="textPortion" (portionLoaded)="onPortionLoaded()" (portionDeleted)="onPortionDeleted($event)"></app-portion>
+
+
 </div>
+
+
+<!-- <div *ngIf="config$ | async as config">
+  <app-portion *ngFor="let textPortion of textPortions" [textPortion]="textPortion" (portionLoaded)="onPortionLoaded()" (portionDeleted)="onPortionDeleted($event)"></app-portion>
+</div> -->
+
 
 <ng-template #helpContent let-modal>
     <div class="modal-header">

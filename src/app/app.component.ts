@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
 
   textPortions: TextPortionSelected[];
   isLoadingView = true;
+  showHideOptionsMenu = false;
 
   constructor(private modalService: NgbModal, private configFacade: ConfigFacade) {}
 
@@ -57,6 +58,10 @@ export class AppComponent implements OnInit {
 
   open(content): void {
     this.modalService.open(content, { size: 'lg' });
+  }
+
+  showHideOptions(): void {
+    this.showHideOptionsMenu = !this.showHideOptionsMenu;
   }
 
 }

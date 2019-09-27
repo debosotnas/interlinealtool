@@ -1,6 +1,6 @@
 <span *ngIf="config$ | async as config" class="parent-words">
   <span *ngIf="config.showAdvancedMode" class="str">{{word.str}}</span>
-  <span class="word">{{word.word}}</span>
+  <span class="word greek-font">{{word.word}}</span>
   <span class="esp">{{word.esp}}</span>
   <span *ngIf="config.showAdvancedMode" class="mor">{{word.mor}}</span>
 </span>

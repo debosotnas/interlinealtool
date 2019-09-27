@@ -1,7 +1,26 @@
 .title-portion {
   font-size: 1.6em;
   font-weight: 300;
-  margin: 8px;
+  display: inline-block;
+  transform: translateY(4px);
+  margin: 0 14px 10px 0;
+}
+
+.portion-header{
+  position: relative;
+
+  .options-btn {
+    position: absolute;
+    top: 10px;
+    right: 3px;
+    background-color: #7b9e72;
+    border-radius: 10px;
+    height: 31px;
+  }
+}
+
+.small-icons-wrapper {
+  background-color: #c2e2ba;
 }
 
 app-verse {
@@ -9,10 +28,10 @@ app-verse {
   margin-bottom: 1px;
 }
 
-// app-portion-selector {
-  // margin-top: 15px;
-  // display: inline-block;
-// }
+app-portion-selector {
+  display: inline-block;
+  margin-left: 20px;
+}
 
 .passage-title {
   background-color: #38ff0933;
@@ -40,6 +59,6 @@ app-verse {
   line-height: 10px;
 }
 
-.empty-btn.extra-margin {
-  margin-top: 20px
+.extra-space {
+  padding: 7px 6px 7px 0;
 }

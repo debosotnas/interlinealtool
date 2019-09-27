@@ -1,10 +1,22 @@
 <div *ngIf="isLoadingView" class="loading-wrapper"></div>
 <div *ngIf="config$ | async as config" class="container-fluid">
   <div class="row passage-title">
-    <div class="col-6 text-left"><div class="title-portion">{{passage}}</div></div>
-    <div class="col-6 text-right">
-        <button [ngClass]="{'extra-margin': !config.showAdvancedMode}" class="btn btn-outline-dark empty-btn" (click)="emptyPortion(passage)">🗑 Quitar pasaje</button>
-        <app-portion-selector (passageSelected)="onSelectedPassage($event)" *ngIf="config.showAdvancedMode && passageSelection" [txtLabel]="'Cambiar:'" [passageSelection]="passageSelection"></app-portion-selector>
+    <div class="col-12 portion-header">
+      <div class="title-portion">{{passage}}</div>
+      
+      <div class="options-btn navbar-dark d-md-none">
+        <button (click)="showHideOptions()" class="navbar-toggler" type="button">
+          ☰
+        </button>
+      </div>
+
+
+      <button class="d-none d-md-inline-block btn btn-outline-dark empty-btn" (click)="emptyPortion(passage)">🗑 Quitar pasaje</button>
+      <app-portion-selector class="d-none d-md-inline-block" (passageSelected)="onSelectedPassage($event)" *ngIf="config.showAdvancedMode && passageSelection" [txtLabel]="'Cambiar:'" [passageSelection]="passageSelection"></app-portion-selector>
+    </div>
+    <div *ngIf="showOptionsOnSmallDevices" class="col-12 text-right d-md-none extra-space small-icons-wrapper">
+      <app-portion-selector (passageSelected)="onSelectedPassage($event)" *ngIf="config.showAdvancedMode && passageSelection" [txtLabel]="'Cambiar:'" [passageSelection]="passageSelection"></app-portion-selector>
+      <button class="btn btn-outline-dark empty-btn" (click)="emptyPortion(passage)">🗑 Quitar pasaje</button>
     </div>
   </div>
 </div>

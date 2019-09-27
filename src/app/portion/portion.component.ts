@@ -24,6 +24,7 @@ export class PortionComponent implements OnInit {
   passage: string;
   verses: Verse[];
   passageSelection: PassageSelection;
+  showOptionsOnSmallDevices = false;
 
   isLoadingView = false;
 
@@ -58,6 +59,10 @@ export class PortionComponent implements OnInit {
       this.portionDeleted.emit(this.textPortion);
       // console.log('borrar!');
     }
+  }
+
+  showHideOptions(): void {
+    this.showOptionsOnSmallDevices = !this.showOptionsOnSmallDevices;
   }
 
 }
