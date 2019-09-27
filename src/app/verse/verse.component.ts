@@ -52,4 +52,12 @@ export class VerseComponent implements OnInit {
     this.wordDetails = null;
   }
 
+  playGreekWord(): void {
+    const audio = new Audio();
+    const str = this.getStrongCode(this.wordDetails.str);
+    audio.src = `https://www.studylight.org/media/lexicons/greek/${str}g.mp3`;
+    audio.load();
+    audio.play();
+  }
+
 }

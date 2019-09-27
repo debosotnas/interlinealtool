@@ -8,11 +8,16 @@
             <span class="greek-word">{{wordDetails.word}}</span>
         </div>
         <div class="word-detail">
-            <span class="literal-detail">Literal:</span>
+            <span class="fonetica-detail">Pronunciación: <button (click)="playGreekWord()">🔊</button></span>
             <br>
-            <span class="literal-word">{{wordDetails.esp}}</span>
+            <span class="fonetica-word">{{wordDetails.fon}}</span>
         </div>
         <div class="word-detail">
+          <span class="literal-detail">Literal:</span>
+          <br>
+          <span class="literal-word">{{wordDetails.esp}}</span>
+      </div>
+      <div class="word-detail">
             <span class="mor-detail">Morfología:</span>
             <br>
             <span class="mor-word">{{wordDetails.mor}}</span>

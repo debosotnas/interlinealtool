@@ -25,3 +25,12 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## TO DO:
+- Add pronunciation like: https://www.studylight.org/lexicons/greek/1510.html
+  - https://www.studylight.org/media/lexicons/greek/1511g.mp3
+  - how to implement: https://catswhocode.com/html-audio-tag/
+- Use of greek font: 'Galatia SIL',helvetica (same site as before link)
+- Add link to https://biblehub.com/
+- Add load next/prev verse button
+-
