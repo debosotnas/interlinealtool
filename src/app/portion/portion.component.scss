@@ -9,10 +9,10 @@ app-verse {
   margin-bottom: 1px;
 }
 
-app-portion-selector {
-  margin-top: 15px;
-  display: inline-block;
-}
+// app-portion-selector {
+  // margin-top: 15px;
+  // display: inline-block;
+// }
 
 .passage-title {
   background-color: #38ff0933;
@@ -38,4 +38,8 @@ app-portion-selector {
   height: 23px;
   vertical-align: middle;
   line-height: 10px;
+}
+
+.empty-btn.extra-margin {
+  margin-top: 20px
 }

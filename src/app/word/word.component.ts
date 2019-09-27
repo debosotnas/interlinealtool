@@ -1,6 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Word } from '../common/verse';
 
+import { ConfigFacade } from '../store/facades/config.facade';
+import { Observable } from 'rxjs';
+import { Config } from 'protractor';
+
 @Component({
   selector: 'app-word',
   templateUrl: './word.component.html',
@@ -10,7 +14,9 @@ export class WordComponent implements OnInit {
 
   @Input() word: Word;
 
-  constructor() { }
+  config$: Observable<Config> = this.configFacade.config$;
+
+  constructor(private configFacade: ConfigFacade) { }
 
   ngOnInit() {
 

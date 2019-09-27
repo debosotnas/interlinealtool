@@ -2,17 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { TextPortionSelected } from './common/verse';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-// --
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-
 import { Config } from './store/models/config.model';
-import * as ConfigActions from './store/actions/config.actions';
-
-interface AppState {
-  config: Config;
-}
-// --
+import { ConfigFacade } from './store/facades/config.facade';
 
 @Component({
   selector: 'app-root',
@@ -21,25 +13,19 @@ interface AppState {
 })
 export class AppComponent implements OnInit {
 
-  config$: Observable<Config>;
+  config$: Observable<Config> = this.configFacade.config$;
 
   textPortions: TextPortionSelected[];
   isLoadingView = true;
 
-  constructor(private modalService: NgbModal, private store: Store<AppState>) {
-    this.config$ = store.select('config');
-  }
+  constructor(private modalService: NgbModal, private configFacade: ConfigFacade) {}
 
   setAdvancedModeEditor(): void {
-    this.store.dispatch(new ConfigActions.AdvancedMode());
+    this.configFacade.setAdvancedMode();
   }
 
   setBasicModeEditor(): void {
-    this.store.dispatch(new ConfigActions.BasicMode());
-  }
-
-  enableDisableAdvancedMode( enableAdvanced: boolean) {
-    enableAdvanced ? this.setAdvancedModeEditor() : this.setBasicModeEditor();
+    this.configFacade.setBasicMode();
   }
 
   ngOnInit(): void {
@@ -52,7 +38,6 @@ export class AppComponent implements OnInit {
 
   onSelectedPassage(evt: TextPortionSelected): void {
     this.textPortions.push(evt);
-    // this.textPortions.unshift(evt);
   }
 
   onPortionLoaded(): void {

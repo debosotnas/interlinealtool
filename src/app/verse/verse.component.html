@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div *ngIf="config$ | async as config" class="container-fluid">
   <div class="row verse-bg">
     <div *ngIf="wordDetails" class="col-2 detail-bg">
         <button (click)="closeWordDetails()" class="btn btn-outline-dark close-btn">X</button>
@@ -8,9 +8,10 @@
             <span class="greek-word">{{wordDetails.word}}</span>
         </div>
         <div class="word-detail">
-            <span class="fonetica-detail">Pronunciación: <button (click)="playGreekWord()">🔊</button></span>
+            <span class="fonetica-detail">Pronunciación: <button class="btn-speaker" (click)="playGreekWord()">🔊</button></span>
             <br>
             <span class="fonetica-word">{{wordDetails.fon}}</span>
+            <span class="fonetica-word-desc">(alternativa)</span>
         </div>
         <div class="word-detail">
           <span class="literal-detail">Literal:</span>
@@ -37,7 +38,7 @@
     </div>
     
     <div class="col greek-bg">
-      <span class="num-verse">{{verse.verse}}</span> <app-word [ngClass]="{'highlight-word': word.highlight}" *ngFor="let word of words" [word]="word" (click)="showWordDetails(word)"></app-word>
+      <span [ngClass]="{'num-verse-basic': !config.showAdvancedMode, 'num-verse-adv': config.showAdvancedMode}" class="num-verse">{{verse.verse}}</span> <app-word [ngClass]="{'highlight-word': word.highlight}" *ngFor="let word of words" [word]="word" (click)="showWordDetails(word)"></app-word>
     </div>
 
     <div class="col-3 trad-bg">

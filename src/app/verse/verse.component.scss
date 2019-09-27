@@ -34,8 +34,15 @@ app-word {
     margin-right: .4em;
     font-weight: bold;
     font-size: 1.3em;
-    transform: translateY(-63px);
     display: inline-block;
+  }
+
+  .num-verse-adv {
+    transform: translateY(-63px);
+  }
+
+  .num-verse-basic {
+    transform: translateY(-38px);
   }
 }
 
@@ -59,14 +66,25 @@ app-word {
     margin: 5px 0;
 
     .greek-detail, .literal-detail, .mor-detail, .str-detail, .fonetica-detail {
-      font-weight: bold;
+      font-weight: 500;
       font-size: 1em;
+    }
+
+    .btn-speaker {
+      border: none;
     }
 
     .greek-word, .literal-word, .mor-word, .str-word, .fonetica-word {
       font-size: 1.1em;
       font-weight: 200;
       color: #5f49cc;
+    }
+
+    .fonetica-word-desc {
+      font-size: .9em;
+      font-weight: 100;
+      color: #999;
+      margin-left: 2px;
     }
 
     .greek-word {

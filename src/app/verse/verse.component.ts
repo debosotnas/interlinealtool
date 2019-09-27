@@ -1,6 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Verse, Word } from '../common/verse';
 
+import { Observable } from 'rxjs';
+import { Config } from '../store/models/config.model';
+import { ConfigFacade } from '../store/facades/config.facade';
+
 @Component({
   selector: 'app-verse',
   templateUrl: './verse.component.html',
@@ -12,7 +16,9 @@ export class VerseComponent implements OnInit {
   words: Word[];
   wordDetails: Word = null;
 
-  constructor() { }
+  config$: Observable<Config> = this.configFacade.config$;
+
+  constructor(private configFacade: ConfigFacade) { }
 
   ngOnInit() {
     this.words = this.verse.words;
@@ -54,7 +60,7 @@ export class VerseComponent implements OnInit {
 
   playGreekWord(): void {
     const audio = new Audio();
-    const str = this.getStrongCode(this.wordDetails.str);
+    const str = this.getStrongCode(this.wordDetails.str).padStart(4, '0');
     audio.src = `https://www.studylight.org/media/lexicons/greek/${str}g.mp3`;
     audio.load();
     audio.play();

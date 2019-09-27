@@ -5,7 +5,7 @@ export type Action = ConfigActions.All;
 
 // Default APP State
 const defaultAppState: Config = {
-  showAdvancedMode: true
+  showAdvancedMode: false
 };
 
 const newState = (state, newData) => {

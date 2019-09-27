@@ -7,13 +7,13 @@ import { Portion, TextPortionSelected } from '../common/verse';
 })
 export class ConfigService {
 
-  // versesURL = 'assets/verse-demo.json';
-  versesURL = 'svc/getverses.php';
+  versesURL = 'assets/verse-demo.json';
+  // versesURL = 'svc/getverses.php';
 
   constructor(private http: HttpClient) { }
 
   getVerses(textPortion: TextPortionSelected) {
-    // return this.http.get<Portion>(this.versesURL);
-    return this.http.get<Portion>(`${this.versesURL}?look=${textPortion.book}&portion=${textPortion.textPortion}`);
+    return this.http.get<Portion>(this.versesURL);
+    // return this.http.get<Portion>(`${this.versesURL}?look=${textPortion.book}&portion=${textPortion.textPortion}`);
   }
 }

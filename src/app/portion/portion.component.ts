@@ -3,6 +3,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Verse, Portion, PassageSelection, TextPortionSelected } from '../common/verse';
 import { ConfigService } from '../services/config.service';
 
+import { Observable } from 'rxjs';
+import { Config } from '../store/models/config.model';
+import { ConfigFacade } from '../store/facades/config.facade';
+
 @Component({
   selector: 'app-portion',
   templateUrl: './portion.component.html',
@@ -15,13 +19,15 @@ export class PortionComponent implements OnInit {
 
   @Input() textPortion: TextPortionSelected;
 
+  config$: Observable<Config> = this.configFacade.config$;
+
   passage: string;
   verses: Verse[];
   passageSelection: PassageSelection;
 
   isLoadingView = false;
 
-   constructor(private configService: ConfigService) { }
+   constructor(private configService: ConfigService, private configFacade: ConfigFacade) { }
 
   ngOnInit() {
     if (this.textPortion) {
