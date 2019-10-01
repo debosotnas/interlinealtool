@@ -70,3 +70,17 @@
     margin: 7px 15px;
   }
 }
+
+.wrapper-initial {
+  margin: 20px;
+  border: 1px dashed #9a7878;
+  padding: 10px;
+  color: #555;
+
+  .title-initial { 
+    font-weight: 500;
+    font-size: 1.1em;
+    margin-bottom: 7px;
+    display: inline-block;
+  }
+}

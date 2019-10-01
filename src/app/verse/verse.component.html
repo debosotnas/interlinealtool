@@ -4,13 +4,18 @@
         <button (click)="closeWordDetails()" class="btn btn-outline-dark close-btn">X</button>
         <app-word-details [contentAsModal]="false" [wordDetails]="wordDetails"></app-word-details>
     </div>
-    
+
+    <div class="col-12 trad-bg d-md-none">
+      <div class="full-verse"><span class="num-verse">{{verse.verse}}</span>{{parseFullVerse(verse.full)}}</div>
+    </div>
+      
     <div class="col greek-bg">
       <span [ngClass]="{'num-verse-basic': !config.showAdvancedMode, 'num-verse-adv': config.showAdvancedMode}" class="num-verse">{{verse.verse}}</span> <app-word [ngClass]="{'highlight-word': word.highlight}" *ngFor="let word of words" [word]="word" (click)="showWordDetails(word)"></app-word>
     </div>
 
-    <div class="col-5 col-md-3 trad-bg">
+    <div class="col-md-3 trad-bg d-none d-md-inline-block">
       <div class="full-verse"><span class="num-verse">{{verse.verse}}</span>{{parseFullVerse(verse.full)}}</div>
     </div>
+
   </div>
 </div>
