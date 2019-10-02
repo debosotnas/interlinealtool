@@ -1,12 +1,64 @@
+mat-sidenav-container {
+  height: 100%;
+
+  .side-logo-container {
+    width: 300px;
+    height: 50px;
+    background-position: 50%;
+  }
+
+}
+
+mat-sidenav {
+
+  .s-box {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+  }
+  .s-header {
+    flex: 0 1 auto;
+  }
+
+  .s-content {
+    flex: 1 1 auto;
+    padding-top: 15px;
+  }
+
+  .s-footer {
+    flex: 0 1 40px;
+  }
+
+  .s-content, .s-footer {
+    text-align: center;
+    align-self: center;
+    width: 100%;
+    button {
+      width: 95%;
+    }
+  }
+
+  .margin-btn {
+    margin-bottom: 10px;
+  }
+}
+
+mat-sidenav-content {
+  background: #fff;
+}
+
 .header-full-wrapper {
   padding: 8px 12px;
 
 }
 
-.portion-selector-wrapper {
-  background-color: #ff3;
-  // padding: 1px 20px;
+app-portion-selector {
+  display: inline-block;
+  width: 100%;
 }
+// .portion-selector-wrapper {
+//   background-color: #ff3;
+// }
 
 .loading-wrapper {
   position: fixed;
@@ -61,13 +113,24 @@
   }
 }
 
+.background-logo {
+  background-color: #3F51B5;
+  background-image: url(../assets/logo-interlineal-01.png);
+  background-position: 12px 8px;
+  background-repeat: no-repeat;
+  background-size: 163px;
+}
 
 .options-btn {
-  background-color: #fffeb8;
+  text-align: right;
+
   button {
-    color: #9a622e;
-    border-color: #9a622e;
+    color: #fff;
     margin: 7px 15px;
+
+    mat-icon {
+      margin-top: -1px;
+    }
   }
 }
 

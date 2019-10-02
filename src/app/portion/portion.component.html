@@ -2,22 +2,22 @@
 <div *ngIf="config$ | async as config" class="container-fluid">
   <div class="row passage-title">
     <div class="col-12 portion-header">
-      <div class="title-portion">{{passage}}</div>
+      <!-- <div class="title-portion">{{passage}}</div> -->
       
-      <div class="options-btn navbar-dark d-md-none">
+      <!-- <div class="options-btn navbar-dark d-md-none">
         <button (click)="showHideOptions()" class="navbar-toggler" type="button">
           ☰
         </button>
-      </div>
+      </div> -->
 
 
-      <button class="d-none d-md-inline-block btn btn-outline-dark empty-btn" (click)="emptyPortion(passage)">🗑 Quitar pasaje</button>
-      <app-portion-selector class="d-none d-md-inline-block" (passageSelected)="onSelectedPassage($event)" *ngIf="config.showAdvancedMode && passageSelection" [txtLabel]="'Cambiar:'" [passageSelection]="passageSelection"></app-portion-selector>
+      <app-portion-selector (passageSelected)="onSelectedPassage($event)" *ngIf="config.showAdvancedMode && passageSelection" [txtLabel]="'Cambiar:'" [passageSelection]="passageSelection"></app-portion-selector>
+      <button mat-stroked-button color="warn" class="empty-btn" (click)="emptyPortion(passage)">🗑 Eliminar pasaje</button>
     </div>
-    <div *ngIf="showOptionsOnSmallDevices" class="col-12 text-right d-md-none extra-space small-icons-wrapper">
+    <!-- <div *ngIf="showOptionsOnSmallDevices" class="col-12 text-right d-md-none extra-space small-icons-wrapper">
       <app-portion-selector (passageSelected)="onSelectedPassage($event)" *ngIf="config.showAdvancedMode && passageSelection" [txtLabel]="'Cambiar:'" [passageSelection]="passageSelection"></app-portion-selector>
       <button class="btn btn-outline-dark empty-btn" (click)="emptyPortion(passage)">🗑 Quitar pasaje</button>
-    </div>
+    </div> -->
   </div>
 </div>
 <app-verse *ngFor="let verse of verses" [verse]="verse"></app-verse>

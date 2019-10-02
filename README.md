@@ -30,7 +30,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 -DONE Add pronunciation like: https://www.studylight.org/lexicons/greek/1510.html
   -DONE https://www.studylight.org/media/lexicons/greek/1511g.mp3
   -DONE how to implement: https://catswhocode.com/html-audio-tag/
-- Use of greek font: 'Galatia SIL',helvetica (same site as before link)
-- Add link to https://biblehub.com/
-- Add load next/prev verse button
+- DONE Use of greek font: 'Galatia SIL',helvetica (same site as before link)
+-NOT IMPLEMENTED Add link to https://biblehub.com/
+-NOT SURE WE WILL IMPLEMENT Add load next/prev verse button
 -

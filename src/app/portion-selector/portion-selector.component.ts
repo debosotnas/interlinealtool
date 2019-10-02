@@ -5,6 +5,7 @@ import { BooksWithChapters, versesByChaptersBook } from './portion-selector-cons
 import { PassageSelection, TextPortionSelected } from '../common/verse';
 
 const DEFAULT_BOOK_TO_LOAD = 470;
+const DEFAULT_LABEL_BUTTON = 'Agregar Pasaje';
 
 @Component({
   selector: 'app-portion-selector',
@@ -42,6 +43,9 @@ export class PortionSelectorComponent implements OnInit {
 
   objectKeys = Object.keys;
 
+  prevLabelBookVersesButton: string;
+  currentLabelBookVersesButton: string;
+
   constructor(private modalService: NgbModal, private renderer: Renderer2) { }
 
   ngOnInit() {
@@ -52,6 +56,7 @@ export class PortionSelectorComponent implements OnInit {
       }
     });
 
+    // has this.passageSelection just if is been loaded from app.component
     if (this.passageSelection) {
       this.bookselected = this.passageSelection.book;
       this.currentChapterHighlight = this.passageSelection.chapter;
@@ -61,7 +66,8 @@ export class PortionSelectorComponent implements OnInit {
         this.passageSelection.verseEnd);
 
       this.updateAndLoadPortion(false);
-    } else {
+    } else { // just set the by defalut value in button/label
+      this.currentLabelBookVersesButton = DEFAULT_LABEL_BUTTON;
       this.resetSelector();
     }
   }
@@ -90,11 +96,13 @@ export class PortionSelectorComponent implements OnInit {
   }
 
   onChangeBook(): void {
-    this.titlePortion = 'Seleccionar versículos';
-    this.isEmptyPortion = true;
+    // this.titlePortion = 'Seleccionar versículos';
+    // this.isEmptyPortion = true;
+    this.getNumberOfVerses();
   }
 
   openSelection(content): void {
+    this.prevLabelBookVersesButton = this.currentLabelBookVersesButton;
     this.currentVerses = null;
     this.currentVerseHighlight = {};
     this.currentChapterHighlight = null;
@@ -168,9 +176,19 @@ export class PortionSelectorComponent implements OnInit {
 
   updateAndLoadPortion(load: boolean = true): void {
     this.titlePortion = this.currentPortionToBeLoaded;
+    if (this.isMainSelector) {
+      this.currentLabelBookVersesButton = DEFAULT_LABEL_BUTTON;
+    } else {
+      this.currentLabelBookVersesButton = `${this.getBookName()} ${this.titlePortion}`;
+    }
+
     if (load) {
       this.loadSimplePortion();
     }
+  }
+
+  cancelLoadPortion(): void {
+    this.currentLabelBookVersesButton = this.prevLabelBookVersesButton;
   }
 
   loadSimplePortion(): void {

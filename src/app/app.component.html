@@ -19,75 +19,97 @@
 </div> -->
 
 <div *ngIf="isLoadingView" class="loading-wrapper"></div>
-<div *ngIf="config$ | async as config">
-
-  <div *ngIf="this.textPortions.length" class="options-btn navbar-dark d-md-none">
-      <button (click)="showHideOptions()" class="navbar-toggler" type="button">
-        ☰
-      </button>
-  </div>
-
-  <div class="portion-selector-wrapper d-none d-md-block">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12 header-full-wrapper">
-            <app-portion-selector [isMainSelector]="true" (passageSelected)="onSelectedPassage($event)" [txtLabel]="'Agregar nuevo pasaje:'"></app-portion-selector>
-
-            <button *ngIf="!this.textPortions.length && config.showAdvancedMode"
-              class="btn advancedOnOff btn-outline-secondary"
-              (click)="setBasicModeEditor()"
-              >Desactivar modo avanzado</button>
-            <button *ngIf="!this.textPortions.length && !config.showAdvancedMode"
-              class="btn advancedOnOff btn-dark"
-              (click)="setAdvancedModeEditor()"
-              >Activar modo avanzado</button>
-            <button *ngIf="this.textPortions.length > 1" [disabled]="!this.textPortions.length" class="btn btn-danger empty-btn" (click)="emptyPortions()">🗑 Quitar todos los pasajes</button>
-            <button class="btn btn-info help-btn" (click)="open(helpContent)">Ayuda</button>
-          </div>
-        </div>
+<mat-sidenav-container>
+  <mat-sidenav [(opened)]="sideBarOpened">
+    <div class="s-box">
+      <div class="s-header">
+          <div class="background-logo side-logo-container"></div>
       </div>
-  </div>
-
-
-  <div *ngIf="showHideOptionsMenu || textPortions.length == 0" class="portion-selector-wrapper d-md-none">
-    <div class="container-fluid">
-      <div class="row full-btn-container">
-        <div *ngIf="!this.textPortions.length" class="col-12">
-          <app-portion-selector [isMainSelector]="true" (passageSelected)="onSelectedPassage($event)" [txtLabel]="'Agregar pasaje:'"></app-portion-selector>
-          <button *ngIf="config.showAdvancedMode"
-            class="btn btn-outline-secondary full-btn"
-            (click)="setBasicModeEditor()"
-            >Desactivar modo avanzado</button>
-        </div>
-        <div *ngIf="!this.textPortions.length" class="col-12">
-          <button *ngIf="!config.showAdvancedMode"
-            class="btn btn-dark full-btn"
-            (click)="setAdvancedModeEditor()"
-            >Activar modo avanzado</button>
-        </div>
-        <div *ngIf="this.textPortions.length > 1" class="col-12">
-          <button [disabled]="!this.textPortions.length" class="full-btn btn btn-danger" (click)="emptyPortions()">🗑 Quitar todos los pasajes</button>
-        </div>
-        <div class="col-12">
-            <button class="btn btn-info full-btn" (click)="open(helpContent)">Ayuda</button>
-          </div>
-        </div>
+      <div class="s-content">
+          <app-portion-selector class="margin-btn" [isMainSelector]="true" (passageSelected)="onSelectedPassage($event)" [txtLabel]="'Agregar nuevo pasaje:'"></app-portion-selector>
+          <button mat-stroked-button color="accent" (click)="open(helpContent)">Ayuda</button>
+      </div>
+      <div class="s-footer">
+          <button mat-stroked-button class="margin-btn" (click)="open(aboutContent)">Acerca de</button>
+          <button mat-stroked-button (click)="sideBarOpened=false">Cerrar</button>
+      </div>
     </div>
-  </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div *ngIf="config$ | async as config">
+    
+      <div *ngIf="this.textPortions.length" class="options-btn background-logo">
+          <button mat-mini-fab color="accent" (click)="sideBarOpened=!sideBarOpened" class="navbar-toggler" type="button">
+            <mat-icon>dehaze</mat-icon>
+          </button>
+      </div>
+    
+      <!-- <div class="portion-selector-wrapper d-none d-md-block">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 header-full-wrapper">
+                <app-portion-selector [isMainSelector]="true" (passageSelected)="onSelectedPassage($event)" [txtLabel]="'Agregar nuevo pasaje:'"></app-portion-selector>
+    
+                <button *ngIf="this.textPortions.length && config.showAdvancedMode"
+                  class="btn advancedOnOff btn-outline-secondary"
+                  (click)="setBasicModeEditor()"
+                  >Desactivar modo avanzado</button>
+                <button *ngIf="this.textPortions.length && !config.showAdvancedMode"
+                  class="btn advancedOnOff btn-dark"
+                  (click)="setAdvancedModeEditor()"
+                  >Activar modo avanzado</button>
+                <button *ngIf="this.textPortions.length > 1" [disabled]="!this.textPortions.length" class="btn btn-danger empty-btn" (click)="emptyPortions()">🗑 Quitar todos los pasajes</button>
+                <button class="btn btn-info help-btn" (click)="open(helpContent)">Ayuda</button>
+              </div>
+            </div>
+          </div>
+      </div> -->
+    
+    
+      <!-- <div *ngIf="showHideOptionsMenu || textPortions.length == 0" class="portion-selector-wrapper d-md-none">
+        <div class="container-fluid">
+          <div class="row full-btn-container">
+            <div class="col-12">
+              <app-portion-selector [isMainSelector]="true" (passageSelected)="onSelectedPassage($event)" [txtLabel]="'Agregar pasaje:'"></app-portion-selector>
+              <button *ngIf="this.textPortions.length && config.showAdvancedMode"
+                class="btn btn-outline-secondary full-btn"
+                (click)="setBasicModeEditor()"
+                >Desactivar modo avanzado</button>
+            </div>
+            <div class="col-12">
+              <button *ngIf="this.textPortions.length && !config.showAdvancedMode"
+                class="btn btn-dark full-btn"
+                (click)="setAdvancedModeEditor()"
+                >Activar modo avanzado</button>
+            </div>
+            <div *ngIf="this.textPortions.length > 1" class="col-12">
+              <button [disabled]="!this.textPortions.length" class="full-btn btn btn-danger" (click)="emptyPortions()">🗑 Quitar todos los pasajes</button>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-info full-btn" (click)="open(helpContent)">Ayuda</button>
+              </div>
+            </div>
+        </div>
+      </div> -->
+    
+    
+      <app-portion *ngFor="let textPortion of textPortions" [textPortion]="textPortion" (portionLoaded)="onPortionLoaded()" (portionDeleted)="onPortionDeleted($event)"></app-portion>
+    
+      <div *ngIf="!textPortions.length" class="wrapper-initial">
+          <span class="title-initial">Comience agregando un nuevo pasaje:</span>
+          <ul>
+            <li><b>1.</b> Seleccione el libro del pasaje y haga click en el botón junto al nombre del libro para buscar los versículos.</li>
+            <li><b>2.</b> En la ventana que se presenta, seleccione primero el capítulo y luego los versículos que desea mostrar.</li>
+            <li><b>3.</b> Presione el botón "Cargar pasaje".</li>
+          </ul>
+      </div>
+    
+    </div>
+    
 
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
-  <app-portion *ngFor="let textPortion of textPortions" [textPortion]="textPortion" (portionLoaded)="onPortionLoaded()" (portionDeleted)="onPortionDeleted($event)"></app-portion>
-
-  <div *ngIf="!textPortions.length" class="wrapper-initial">
-      <span class="title-initial">Comience agregando un nuevo pasaje:</span>
-      <ul>
-        <li><b>1.</b> Seleccione el libro del pasaje y haga click en el botón junto al nombre del libro para buscar los versículos.</li>
-        <li><b>2.</b> En la ventana que se presenta, seleccione primero el capítulo y luego los versículos que desea mostrar.</li>
-        <li><b>3.</b> Presione el botón "Cargar pasaje".</li>
-      </ul>
-</div>
-
-</div>
 
 <ng-template #helpContent let-modal>
     <div class="modal-header">
@@ -101,24 +123,23 @@
         <ul>
           <li>Agregar nuevo pasaje:
             <ul>
-              <li><b>Seleccione el libro</b> del pasaje y haga click en el botón junto al nombre del libro.</li>
-              <li>En la ventana que se presenta, seleccione primero el capítulo y luego los versículos que desea mostrar.</li>
+              <li>Puede ver el botón "Agregar Pasaje" en la barra de navegación izquierda. Haga click en el botón "Agregar Pasaje".</li>
+              <li>En la ventana que se presenta, seleccione primero el libro, luego capítulo y finalmente el o los versículos que desea mostrar.</li>
               <li>Presione el botón "Cargar pasaje".</li>
             </ul>
           </li>
 
           <li>Quitar pasajes:
             <ul>
-              <li>Para quitar todos los pasajes cargados, haga click en el botón "Quitar todos los pasajes" que se encuentra sobre la barra superior de la aplicación</li>
-              <li>Para quitar una única porción/pasaje, haga click en el botón "Quitar pasaje" el pasaje que desea eliminar.</li>
+              <li>Para quitar una porción/pasaje, simplemente haga click en el botón "Eliminar pasaje" situado sobre el pasaje que desea eliminar.</li>
             </ul>
           </li>
   
           <li>Ver detalle de palabras/léxico:
             <ul>
-              <li>Teniendo un pasaje ya cargado, puede pasar con el mouse sobre las palabras del interlineal y hacer click sobre la que desee obtener más información.</li>
-              <li>Se abrirá a la izquierda de la pantalla un recuadro con "más información" sobre la palabra seleccionada.</li>
-              <li>Para cerrar el cuadro de "más información" puede cliquear en el botón "X" que aparece en la esquina superior derecha del mismo cuadro "más información".</li>
+              <li>Teniendo un pasaje ya cargado, puede pasar con el mouse sobre las palabras del interlineal y hacer click sobre la palabra que desee obtener más información.</li>
+              <li>Se abrirá una pantalla con "más información" sobre la palabra seleccionada.</li>
+              <li>Para cerrar el cuadro de "más información" puede cliquear en el botón "X" que aparece en la pantalla de "más información".</li>
             </ul>
           </li>
 
@@ -130,6 +151,27 @@
             </ul>
           </li>
         </ul>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Cerrar</button>
+    </div>
+</ng-template>
+
+<ng-template #aboutContent let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Acerca de Interlineal Tool</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div>
+        <p>
+          <b>Interlineal</b> es una herramienta de <a href="https://predicaciónexpositiva.com" target="_blank">PredicaciónExpositiva.com</a>, desarrollada esperando que pueda ser útil para el estudio bíblico.
+          <br />
+          Además de <b>Interlineal</b>, otra herramienta disponible es <a href="https://predicacionexpositiva.com/tools/editor" target="_blank">Inductive</a>, una aplicación simple para ayudar durante el estudio inductivo.
+        </p>
       </div>
     </div>
     <div class="modal-footer">
