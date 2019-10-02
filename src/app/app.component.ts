@@ -13,11 +13,13 @@ import { ConfigFacade } from './store/facades/config.facade';
 })
 export class AppComponent implements OnInit {
 
+  sideBarOpened = false;
+
   config$: Observable<Config> = this.configFacade.config$;
 
   textPortions: TextPortionSelected[];
   isLoadingView = true;
-  showHideOptionsMenu = false;
+  // showHideOptionsMenu = false;
 
   constructor(private modalService: NgbModal, private configFacade: ConfigFacade) {}
 
@@ -35,10 +37,13 @@ export class AppComponent implements OnInit {
       textPortion: '1:1',
       book: 500
     });
+    // to do: temporal
+    this.configFacade.setAdvancedMode();
   }
 
   onSelectedPassage(evt: TextPortionSelected): void {
     this.textPortions.push(evt);
+    this.sideBarOpened = false;
   }
 
   onPortionLoaded(): void {
@@ -60,8 +65,8 @@ export class AppComponent implements OnInit {
     this.modalService.open(content, { size: 'lg' });
   }
 
-  showHideOptions(): void {
-    this.showHideOptionsMenu = !this.showHideOptionsMenu;
-  }
+  // showHideOptions(): void {
+  //   this.showHideOptionsMenu = !this.showHideOptionsMenu;
+  // }
 
 }

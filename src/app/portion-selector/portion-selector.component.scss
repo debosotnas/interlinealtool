@@ -18,14 +18,15 @@
     display: inline-block;    
   }
 
-  .btn-chap-verse {
-    font-size: 12px;
-    height: 23px;
-    vertical-align: middle;
-    line-height: 10px;
-    width: 160px;
-    text-align: left;
-    margin-left: 5px;
+  .btn-main-selector {
+    width: 95%;
+  }
+
+  .btn-no-main-selector {
+    background-color: #aae41f;
+    color: #333;
+    font-size: 1em;
+    font-weight: 400;
   }
 
   .book-selected {
@@ -37,7 +38,18 @@
 
 }
 
+.search-controls-block.from-main-app {
+  display: block;
+
+}
+
 // -- select verses modal
+.list-of-books {
+  select {
+    margin-left: 10px;
+  }
+  margin-bottom: 10px;
+}
 .list-of-chapters {
 
   .chapters {

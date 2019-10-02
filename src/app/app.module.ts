@@ -13,6 +13,8 @@ import { WordComponent } from './word/word.component';
 import { PortionComponent } from './portion/portion.component';
 import { PortionSelectorComponent } from './portion-selector/portion-selector.component';
 import { WordDetailsComponent } from './word-details/word-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { WordDetailsComponent } from './word-details/word-details.component';
     HttpClientModule,
     FormsModule,
     NgbModule,
-    StoreModule.forRoot({ config: postReducer })
+    StoreModule.forRoot({ config: postReducer }),
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   entryComponents: [WordDetailsComponent],
   providers: [NgbActiveModal],

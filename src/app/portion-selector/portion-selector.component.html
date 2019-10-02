@@ -1,24 +1,31 @@
-<div class="search-controls-block">
-  <!-- <span *ngIf="isMainSelector" class="plus-sign">⊕</span> -->
-  <span class="selection-description">{{txtLabel}}</span>
-  <select class="book-selected" [(ngModel)]="bookselected" (ngModelChange)="onChangeBook()">
-    <option *ngFor="let item of listBooks" [selected]="bookselected == item.val" [value]="item.val">{{item.name}}</option>
-  </select>
+<div class="search-controls-block" [ngClass]="{'from-main-app': isMainSelector}">
+  <!-- <span class="selection-description">{{txtLabel}}</span> -->
+  
 
-  <button class="btn-chap-verse btn" 
-    [ngClass]="{'btn-secondary': !isEmptyPortion, 'btn-primary': isEmptyPortion}"
-    (click)="openSelection(passageContent)">{{titlePortion}}</button>
+  <!-- <span *ngIf="isMainSelector" class="plus-sign">⊕</span> -->
+  <!-- <select class="book-selected" [(ngModel)]="bookselected" (ngModelChange)="onChangeBook()">
+    <option *ngFor="let item of listBooks" [selected]="bookselected == item.val" [value]="item.val">{{item.name}}</option>
+  </select> -->
+
+  <button mat-stroked-button color="accent" [ngClass]="{'btn-no-main-selector': !isMainSelector, 'btn-main-selector': isMainSelector}"
+    (click)="openSelection(passageContent)">{{currentLabelBookVersesButton}}</button>
 </div>
 
 <ng-template #passageContent let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Seleccionar versículos para '{{getBookName()}}'</h4>
+    <h4 class="modal-title" id="modal-basic-title">Seleccionar pasaje a cargar</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
     <div>
+      <div class="list-of-books">
+        <b>Libro:</b>
+        <select class="book-selected" [(ngModel)]="bookselected" (ngModelChange)="onChangeBook()">
+          <option *ngFor="let item of listBooks" [selected]="bookselected == item.val" [value]="item.val">{{item.name}}</option>
+        </select>          
+      </div>
       <div class="list-of-chapters">
         <b>Capítulos:</b>
         <div class="chapters">
@@ -43,7 +50,7 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Cancelar</button>
+    <button type="button" class="btn btn-outline-dark" (click)="cancelLoadPortion(); modal.close()">Cancelar</button>
     <button type="button"
         class="btn btn-success"
         (click)="updateAndLoadPortion(); modal.close()"
